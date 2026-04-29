@@ -1,8 +1,8 @@
 # Cross-domain-evaluation-of-persuasion-detection
 
-# 🧠 Persuasion Detection in Long Documents (Cross-Domain Analysis)
+#  Persuasion Detection in Long Documents (Cross-Domain Analysis)
 
-## 📌 Overview
+##  Overview
 
 This project focuses on **persuasion detection in long-form text (paragraph-level)** and investigates the **limitations of existing sentence-level models**, particularly in **cross-domain generalization**.
 
@@ -13,7 +13,7 @@ While most prior work treats persuasion detection as a **sentence-level classifi
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 * Evaluate existing persuasion detection models on **multiple domains**
 * Analyze **sentence-level vs paragraph-level** effectiveness
@@ -22,29 +22,30 @@ While most prior work treats persuasion detection as a **sentence-level classifi
 * Propose and validate **domain-mixing as a solution**
 
 ---
+##  Sentence Level Datasets Used
+* PersuasionForGood
+*  Quora-insincere-questions: Consist approximately 1.3M  training sample with Questions are marked as 0 (Sincere) and 1 (Insincere)
+* PersentSe: Persuasion Sentences in Spam Email (Total sentences: 1,075 , Persuasive sentences: 216 (20.1%))
 
-## 📂 Datasets Used
+##  Paragraph Level Datasets Used
 
-### 🗣️ Persuasion Datasets
+###  Persuasion Datasets
 
 * CMV (ChangeMyView) – long-form argumentative discussions
-* Anthropic Persuasion Dataset (v1, v2)
 
-### 📧 Phishing / Scam Datasets
+###  Phishing / Scam Datasets
 
-* Enron Email Dataset
+* Ling dataset
 * Zenodo Phishing Dataset
 * Recruitment Scam Dataset
 
-### 🧪 Synthetic Data
+### Synthetic Data
 
 * Generated to simulate persuasion patterns across domains
 
-> These datasets include both **sentence-level and paragraph-level structures**, enabling comparative analysis.
-
 ---
 
-## ⚙️ Models Evaluated
+##  Models Evaluated
 
 This work **reproduces and benchmarks** multiple existing models:
 
@@ -56,7 +57,7 @@ This work **reproduces and benchmarks** multiple existing models:
 
 ---
 
-## 🧪 Experimental Setup
+##  Experimental Setup
 
 ### 1. Sentence-Level vs Paragraph-Level
 
@@ -74,7 +75,7 @@ We evaluated three input formats:
 * **Reasoning only (LLM-generated features)**
 * **Text + Reasoning**
 
-📌 **Key Finding:**
+ **Key Finding:**
 
 > Combining **text + reasoning** significantly improves performance
 
@@ -88,13 +89,13 @@ Models were trained and tested across different domains:
 * Train on Synthetic → Test on CMV
 * Train on CMV → Test on Synthetic
 
-📌 **Observation:**
+ **Observation:**
 
 > Models fail to generalize across domains
 
 ---
 
-## 📊 Results Summary
+##  Results Summary
 
 * Best F1 observed when:
 
@@ -105,7 +106,7 @@ Models were trained and tested across different domains:
 
 ---
 
-## 🚨 Problem Identified: Cross-Domain Failure
+##  Problem Identified: Cross-Domain Failure
 
 Models trained on one dataset **do not transfer well** to others due to:
 
@@ -115,7 +116,7 @@ Models trained on one dataset **do not transfer well** to others due to:
 
 ---
 
-## 🧠 5-Dimension Analysis Framework
+##  5-Dimension Analysis Framework
 
 To explain cross-domain failure, persuasion was analyzed across:
 
@@ -125,16 +126,16 @@ To explain cross-domain failure, persuasion was analyzed across:
 4. **Persuasion Technique**
 5. **Politeness**
 
-### 📌 Key Insight:
+###  Key Insight:
 
 * **CMV** → reasoning-heavy, polite
 * **Marketing / Ling datasets** → CTA-heavy, action-driven
 
-👉 These differences explain poor generalization
+ These differences explain poor generalization
 
 ---
 
-## 🧪 Manual Annotation Study
+##  Manual Annotation Study
 
 * Annotated CMV dataset manually using custom persuasion definitions
 * Inter-annotator agreement:
@@ -142,14 +143,14 @@ To explain cross-domain failure, persuasion was analyzed across:
   * **~72% agreement (360/500 samples)**
   * Cohen’s Kappa ≈ 0.4
 
-📌 Indicates:
+ Indicates:
 
 * Persuasion detection is **subjective**
 * Dataset inconsistency affects model performance
 
 ---
 
-## 💡 Proposed Solution: Domain Mixing
+##  Proposed Solution: Domain Mixing
 
 ### Approach:
 
@@ -159,13 +160,13 @@ To explain cross-domain failure, persuasion was analyzed across:
   * Mixed domain
   * Individual domains
 
-### 📌 Result:
+###  Result:
 
 > Domain mixing improves generalization across datasets
 
 ---
 
-## 🏗️ Proposed Architecture
+##  Proposed Architecture
 
 The final model setup uses:
 
@@ -181,7 +182,7 @@ The final model setup uses:
 
 ---
 
-## 📈 Key Contributions
+##  Key Contributions
 
 * Demonstrated limitations of **sentence-level persuasion detection**
 * Performed **cross-domain benchmarking** across multiple datasets
@@ -192,7 +193,7 @@ The final model setup uses:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 project/
@@ -211,7 +212,7 @@ project/
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ```bash
 git clone <your-repo-link>
@@ -224,7 +225,7 @@ python main.py
 
 ---
 
-## 📊 Evaluation Metrics
+##  Evaluation Metrics
 
 * Accuracy
 * Precision
@@ -233,7 +234,7 @@ python main.py
 
 ---
 
-## 🔮 Future Work
+##  Future Work
 
 * Improve cross-domain robustness using domain adaptation
 * Better annotation strategies for persuasion
@@ -242,18 +243,12 @@ python main.py
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 This project highlights a critical issue in persuasion detection:
 
 > **Models do not generalize across domains due to differences in persuasion style and linguistic patterns.**
 
 By incorporating reasoning signals and domain mixing, we move closer to building **robust, domain-independent persuasion detection systems**.
-
----
-
-## 🙌 Acknowledgement
-
-This work was conducted as part of a research project at **IIT Kharagpur**, focusing on advancing understanding of persuasion in long-form text.
 
 ---
