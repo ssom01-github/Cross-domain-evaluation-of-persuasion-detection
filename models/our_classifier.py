@@ -1,4 +1,3 @@
-# #!/usr/bin/env python3
 # import os
 # import re
 # import time
@@ -44,12 +43,12 @@
 #     # "Synthetic": {
 #     #     # update these paths if you have separate train/test files at different locations
 #     #     "train": "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/Synthetic_train_text_reasoning.csv",
-#     #     "test" : "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/Synthetic_test_text_reasoning.csv"  # <-- change if needed
+#     #     "test" : "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/Synthetic_test_text_reasoning.csv"  # <-- change the file path
 #     # },
 #     "Ling": {
 #         # if Ling only had one file, duplicate it or provide proper test file
 #         "train": "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/Ling_train_text_reasoning.csv",
-#         "test" : "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/ling_test_text_reasoning.csv"  # <-- change to real test file
+#         "test" : "/home/somrupa/persuasion/RecruitmentScam/reasoning_local_mistral_outputs/reasoning/ling_test_text_reasoning.csv"  # <--change the file path
 #     },
 #     # Add more datasets here if needed, following the same pattern
 # }
@@ -93,10 +92,10 @@
 
 #     df = normalize_label_col(df, "label")
 
-#     # ⭐ reasoning-only
+#     #  reasoning-only
 #     df["combined"] = df["reasoning"].astype(str)
 
-#     # 🔍 debug mode: only 2 datapoints
+#     #  debug mode: only 2 datapoints
 #     if DEBUG_N_SAMPLES is not None:
 #         df = df.head(DEBUG_N_SAMPLES)
 
@@ -368,37 +367,4 @@
 # # pd.DataFrame(rows).to_csv(OUT_SUMMARY, index=False)
 # # print(f"\nSummary saved to: {OUT_SUMMARY}")
 
-#Code to get the onfusion matrix 
-# import pandas as pd
-# from sklearn.metrics import confusion_matrix
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-
-# # path to prediction file
-# pred_path = "//home/somrupa/persuasion/RecruitmentScam/runs/CMV_to_Synthetic_run2_1765531851/predictions.csv"
-
-# df = pd.read_csv(pred_path)
-
-# y_true = df["true_label"]
-# y_pred = df["pred_label"]
-
-# cm = confusion_matrix(y_true, y_pred)
-
-# print(cm)
-
-# # Plot
-# plt.figure(figsize=(5,4))
-# sns.heatmap(
-#     cm,
-#     annot=True,
-#     fmt="d",
-#     cmap="Blues",
-#     xticklabels=["Non-Persuasive", "Persuasive"],
-#     yticklabels=["Non-Persuasive", "Persuasive"]
-# )
-# plt.xlabel("Predicted")
-# plt.ylabel("Actual")
-# plt.title("Confusion Matrix: CMV → Ling")
-# plt.tight_layout()
-# plt.show()
 
