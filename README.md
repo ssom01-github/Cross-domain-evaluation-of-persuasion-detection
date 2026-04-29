@@ -198,13 +198,12 @@ The final model setup uses:
 ```
 project/
 │
-├── data/                # Datasets (or links)
+├── Paragraph level dataset/                # Datasets (or links)
+├── Sentence level dataset/  
 ├── models/              # Model implementations
 ├── experiments/         # Training + evaluation scripts
 ├── utils/               # Helper functions
 ├── results/             # Metrics, plots, outputs
-├── notebooks/           # Optional analysis notebooks
-│
 ├── main.py              # Entry point
 ├── requirements.txt
 └── README.md
