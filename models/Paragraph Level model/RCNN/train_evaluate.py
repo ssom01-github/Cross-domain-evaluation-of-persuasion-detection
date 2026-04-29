@@ -1,140 +1,140 @@
-#code for Modification of RCNN model using paragraph level data
-# import torch
-# import torch.nn as nn
-# import torch.optim as optim
-# from torch.utils.data import DataLoader
-# from sklearn.metrics import classification_report
-# import pandas as pd
-# from rcnn_model import RCNN
-# from utils import TextDataset, build_vocab
+code for Modification of RCNN model using paragraph level data
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from sklearn.metrics import classification_report
+import pandas as pd
+from rcnn_model import RCNN
+from utils import TextDataset, build_vocab
 
-# # ===============================
-# # 🔹 Paths to Nizerian dataset
-# # ===============================
-# NIZERIAN_TRAIN = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/train.csv"
-# NIZERIAN_VAL   = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/val.csv"
-# NIZERIAN_TEST  = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/test.csv"
+# ===============================
+# 🔹 Paths to Nizerian dataset
+# ===============================
+NIZERIAN_TRAIN = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/train.csv"
+NIZERIAN_VAL   = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/val.csv"
+NIZERIAN_TEST  = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nizerian_5_split/test.csv"
 
-# # 🔹 Paths to phishing dataset
-# PHISHING_TRAIN = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/train.csv"
-# PHISHING_VAL   = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/val.csv"
-# PHISHING_TEST  = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/test.csv"
-
-
-# # Load Data
-
-# train_Nizerian = pd.read_csv(NIZERIAN_TRAIN)
-# val_Nizerian   = pd.read_csv(NIZERIAN_VAL)
-# test_Nizerian  = pd.read_csv(NIZERIAN_TEST)
-
-# train_phishing = pd.read_csv(PHISHING_TRAIN)
-# val_phishing   = pd.read_csv(PHISHING_VAL)
-# test_phishing  = pd.read_csv(PHISHING_TEST)
+# 🔹 Paths to phishing dataset
+PHISHING_TRAIN = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/train.csv"
+PHISHING_VAL   = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/val.csv"
+PHISHING_TEST  = "/home/somrupa/persuasion/RecruitmentScam/Bert_Data/Nazario5_split/test.csv"
 
 
-# #  Build vocab (from Nizerian train set for consistency)
+# Load Data
 
-# vocab = build_vocab(train_Nizerian)
-# PAD_IDX = vocab["<pad>"]
+train_Nizerian = pd.read_csv(NIZERIAN_TRAIN)
+val_Nizerian   = pd.read_csv(NIZERIAN_VAL)
+test_Nizerian  = pd.read_csv(NIZERIAN_TEST)
 
-
-# # Device setup
-
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# # Hyperparameters
-
-# BATCH_SIZE = 64
-# EPOCHS = 5
-# EMBED_DIM = 100
-# HIDDEN_DIM = 128
-# OUTPUT_DIM = 2
+train_phishing = pd.read_csv(PHISHING_TRAIN)
+val_phishing   = pd.read_csv(PHISHING_VAL)
+test_phishing  = pd.read_csv(PHISHING_TEST)
 
 
-# #  Collate Function
+#  Build vocab (from Nizerian train set for consistency)
 
-# def collate_batch(batch):
-#     texts, labels = zip(*batch)
-#     padded = nn.utils.rnn.pad_sequence(texts, padding_value=PAD_IDX, batch_first=True)
-#     return padded.to(device), torch.tensor(labels).to(device)
+vocab = build_vocab(train_Nizerian)
+PAD_IDX = vocab["<pad>"]
 
 
-# #  DataLoaders
-# # Nizerian loaders
-# train_loader_r = DataLoader(TextDataset(train_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_batch)
-# val_loader_r   = DataLoader(TextDataset(val_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
-# test_loader_r  = DataLoader(TextDataset(test_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
+# Device setup
 
-# # Phishing loaders
-# train_loader_p = DataLoader(TextDataset(train_phishing, vocab), batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_batch)
-# val_loader_p   = DataLoader(TextDataset(val_phishing, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
-# test_loader_p  = DataLoader(TextDataset(test_phishing, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# #  Training / Evaluation Functions
+# Hyperparameters
 
-# def train(model, loader):
-#     model.train()
-#     total_loss = 0
-#     for x, y in loader:
-#         optimizer.zero_grad()
-#         out = model(x)
-#         loss = criterion(out, y)
-#         loss.backward()
-#         optimizer.step()
-#         total_loss += loss.item()
-#     return total_loss / len(loader)
-
-# def evaluate(model, loader):
-#     model.eval()
-#     all_preds, all_labels = [], []
-#     with torch.no_grad():
-#         for x, y in loader:
-#             out = model(x)
-#             preds = out.argmax(dim=1)
-#             all_preds.extend(preds.cpu().numpy())
-#             all_labels.extend(y.cpu().numpy())
-#     return classification_report(all_labels, all_preds, digits=4)
+BATCH_SIZE = 64
+EPOCHS = 5
+EMBED_DIM = 100
+HIDDEN_DIM = 128
+OUTPUT_DIM = 2
 
 
-# #  Nizerian → Nizerian + Phishing
+#  Collate Function
 
-# # print("\n🔹 Training on Nizerian (train set)")
-# # model = RCNN(len(vocab), EMBED_DIM, HIDDEN_DIM, OUTPUT_DIM, PAD_IDX).to(device)
-# # optimizer = optim.Adam(model.parameters())
-# # criterion = nn.CrossEntropyLoss()
-
-# # for epoch in range(EPOCHS):
-# #     loss = train(model, train_loader_r)
-# #     print(f"Epoch {epoch+1}/{EPOCHS} | Train Loss: {loss:.4f}")
-
-# # print("\n Validation on Nizerian")
-# # print(evaluate(model, val_loader_r))
-
-# # print("\n Test on Nizerian")
-# # print(evaluate(model, test_loader_r))
-
-# # print("\n Cross-domain: Test on Phishing Emails")
-# # print(evaluate(model, test_loader_p))
+def collate_batch(batch):
+    texts, labels = zip(*batch)
+    padded = nn.utils.rnn.pad_sequence(texts, padding_value=PAD_IDX, batch_first=True)
+    return padded.to(device), torch.tensor(labels).to(device)
 
 
-# #  Phishing → Phishing + Nizerian
+#  DataLoaders
+# Nizerian loaders
+train_loader_r = DataLoader(TextDataset(train_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_batch)
+val_loader_r   = DataLoader(TextDataset(val_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
+test_loader_r  = DataLoader(TextDataset(test_Nizerian, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
 
-# print("\n🔹 Training on Phishing Emails(train set)")
+# Phishing loaders
+train_loader_p = DataLoader(TextDataset(train_phishing, vocab), batch_size=BATCH_SIZE, shuffle=True, collate_fn=collate_batch)
+val_loader_p   = DataLoader(TextDataset(val_phishing, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
+test_loader_p  = DataLoader(TextDataset(test_phishing, vocab), batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_batch)
+
+#  Training / Evaluation Functions
+
+def train(model, loader):
+    model.train()
+    total_loss = 0
+    for x, y in loader:
+        optimizer.zero_grad()
+        out = model(x)
+        loss = criterion(out, y)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    return total_loss / len(loader)
+
+def evaluate(model, loader):
+    model.eval()
+    all_preds, all_labels = [], []
+    with torch.no_grad():
+        for x, y in loader:
+            out = model(x)
+            preds = out.argmax(dim=1)
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(y.cpu().numpy())
+    return classification_report(all_labels, all_preds, digits=4)
+
+
+#  Nizerian → Nizerian + Phishing
+
+# print("\n🔹 Training on Nizerian (train set)")
 # model = RCNN(len(vocab), EMBED_DIM, HIDDEN_DIM, OUTPUT_DIM, PAD_IDX).to(device)
 # optimizer = optim.Adam(model.parameters())
+# criterion = nn.CrossEntropyLoss()
 
 # for epoch in range(EPOCHS):
-#     loss = train(model, train_loader_p)
+#     loss = train(model, train_loader_r)
 #     print(f"Epoch {epoch+1}/{EPOCHS} | Train Loss: {loss:.4f}")
 
-# print("\n Validation on Phishing Emails")
-# print(evaluate(model, val_loader_p))
+# print("\n Validation on Nizerian")
+# print(evaluate(model, val_loader_r))
 
-# print("\n Test on Phishing Emails")
+# print("\n Test on Nizerian")
+# print(evaluate(model, test_loader_r))
+
+# print("\n Cross-domain: Test on Phishing Emails")
 # print(evaluate(model, test_loader_p))
 
-# print("\n Cross-domain: Test on Nizerian")
-# print(evaluate(model, test_loader_r))
+
+#  Phishing → Phishing + Nizerian
+
+print("\n🔹 Training on Phishing Emails(train set)")
+model = RCNN(len(vocab), EMBED_DIM, HIDDEN_DIM, OUTPUT_DIM, PAD_IDX).to(device)
+optimizer = optim.Adam(model.parameters())
+
+for epoch in range(EPOCHS):
+    loss = train(model, train_loader_p)
+    print(f"Epoch {epoch+1}/{EPOCHS} | Train Loss: {loss:.4f}")
+
+print("\n Validation on Phishing Emails")
+print(evaluate(model, val_loader_p))
+
+print("\n Test on Phishing Emails")
+print(evaluate(model, test_loader_p))
+
+print("\n Cross-domain: Test on Nizerian")
+print(evaluate(model, test_loader_r))
 
 
 #Code for Part A: K-Fold CV within each dataset (fold-wise results + averages).
