@@ -1,0 +1,14 @@
+                precision    recall  f1-score   support
+
+Non-Persuasive       0.57      0.70      0.63      1141
+    Persuasive       0.64      0.51      0.57      1213
+
+      accuracy                           0.60      2354
+     macro avg       0.60      0.60      0.60      2354
+  weighted avg       0.61      0.60      0.59      2354
+
+
+Accuracy: 0.598131
+Precision: 0.638629
+Recall: 0.507007
+F1: 0.565257
