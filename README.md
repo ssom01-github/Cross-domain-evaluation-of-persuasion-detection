@@ -212,7 +212,6 @@ project/
 ├── experiments/         # Training + evaluation scripts
 ├── utils/               # Helper functions
 ├── results/             # Metrics, plots, outputs
-├── main.py              # Entry point
 ├── requirements.txt
 └── README.md
 ```
