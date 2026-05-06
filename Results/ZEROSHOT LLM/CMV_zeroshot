@@ -1,0 +1,12 @@
+                precision    recall  f1-score   support
+
+Non-Persuasive       0.44      0.78      0.57      4987
+    Persuasive       0.52      0.20      0.28      6029
+
+      accuracy                           0.46     11016
+     macro avg       0.48      0.49      0.43     11016
+  weighted avg       0.48      0.46      0.41     11016
+
+Confusion Matrix:
+[[3884 1103]
+ [4848 1181]]
