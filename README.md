@@ -81,7 +81,15 @@ We evaluated three input formats:
 
 ---
 
-### 3. Cross-Domain Evaluation
+### 3. In-Domain Evaluation
+
+Models were trained and tested on same domains:
+
+* Train on CMV → Test on CMV
+* Train on Synthetic → Test on Synthetic
+* Train on Ling → Test on Ling
+
+### 4. Cross-Domain Evaluation
 
 Models were trained and tested across different domains:
 
