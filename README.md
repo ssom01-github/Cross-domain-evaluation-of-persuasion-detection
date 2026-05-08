@@ -74,6 +74,14 @@ We evaluated three input formats:
 * **Reasoning only (LLM-generated features)**
 * **Text + Reasoning**
 
+* <p align="center">
+  <img src="Image/Baseline-Architecture.png" width="850"/>
+</p>
+
+<p align="center">
+  <em>Figure: baseline proposed architecture  using Text and reasoning to capture the intent of persuasiveness.</em>
+</p>
+
  **Key Finding:**
 
 > Combining **text + reasoning** significantly improves performance
