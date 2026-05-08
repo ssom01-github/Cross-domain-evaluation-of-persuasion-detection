@@ -146,6 +146,13 @@ To explain cross-domain failure, persuasion was analyzed across:
   <em>Figure: Call-to-action CDF for Ling Vs CMV data.</em>
 </p>
 
+<p align="center">
+  <img src="Image/Politeness_CDF_ling_mistral_vs_cmv_mistral.png" width="850"/>
+</p>
+
+<p align="center">
+  <em>Figure: Politeness CDF for Ling Vs CMV data.</em>
+</p>
  These differences explain poor generalization
 
 ---
