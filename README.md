@@ -79,7 +79,7 @@ We evaluated three input formats:
 </p>
 
 <p align="center">
-  <em>Figure: baseline proposed architecture  using Text and reasoning to capture the intent of persuasiveness.</em>
+  <em>Figure: Baseline proposed architecture using Text and reasoning together to capture the intent of persuasiveness.</em>
 </p>
 
  **Key Finding:**
