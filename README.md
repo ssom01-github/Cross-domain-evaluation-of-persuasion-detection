@@ -24,7 +24,7 @@ While most prior work treats persuasion detection as a **sentence-level classifi
 ---
 ##  Sentence Level Datasets Used
 * PersuasionForGood
-*  Quora-insincere-questions: Consist approximately 1.3M  training sample with Questions are marked as 0 (Sincere) and 1 (Insincere)
+*  Quora-insincere-questions: Consist approximately 1.3M  training sample with Questions are marked as 0 (Sincere) and 1 (Insincere) Link: https://www.kaggle.com/datasets/arnavsharma45/quora-insincere-questions-dataset
 * PersentSe: Persuasion Sentences in Spam Email (Total sentences: 1,075 , Persuasive sentences: 216 (20.1%) Link: https://zenodo.org/records/14585764)
 
 ##  Paragraph Level Datasets Used
