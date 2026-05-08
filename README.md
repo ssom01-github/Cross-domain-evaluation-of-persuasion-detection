@@ -231,7 +231,7 @@ project/
 ├── Paragraph level dataset/                # Datasets (or links)
 ├── Sentence level dataset/  
 ├── models/              # Model implementations
-├── experiments/         # Training + evaluation scripts
+├── Image/         # architecture and plots
 ├── utils/               # Helper functions
 ├── results/             # Metrics, plots, outputs
 ├── requirements.txt
