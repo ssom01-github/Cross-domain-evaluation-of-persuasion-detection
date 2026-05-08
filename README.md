@@ -144,7 +144,7 @@ To explain cross-domain failure, persuasion was analyzed across:
 ###  Key Insight:
 
 * **CMV** → reasoning-heavy, polite
-* **Marketing / Ling datasets** → CTA-heavy, action-driven
+* **Ling datasets** → CTA-heavy, action-driven
 
   <p align="center">
   <img src="Image/Cta_CDF_ling_mistral_vs_cmv_mistral.png" width="850"/>
