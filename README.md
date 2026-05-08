@@ -35,7 +35,6 @@ While most prior work treats persuasion detection as a **sentence-level classifi
 
 ###  Phishing / Scam Datasets
 
-* Ling dataset
 * Zenodo Phishing Dataset
 * Recruitment Scam Dataset
 
