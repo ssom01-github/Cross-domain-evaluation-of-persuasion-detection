@@ -263,10 +263,11 @@ pip install -r requirements.txt
 
 ##  Future Work
 
-* Improve cross-domain robustness using domain adaptation
+* Improve cross-domain robustness using **Mixture Of Domain Expert Models(MoDEM)**
+* Transfer knowledge across domains
 * Better annotation strategies for persuasion
 * Incorporate structured reasoning (chain-of-thought) more effectively
-* Explore transformer-based architectures for long documents
+
 
 ---
 
