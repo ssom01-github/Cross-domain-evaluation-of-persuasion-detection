@@ -4,7 +4,7 @@
 
 ##  Overview
 
-This project focuses on **persuasion detection in long-form text (paragraph-level)** and investigates the **limitations of existing sentence-level models**, particularly in **cross-domain generalization**.
+This research project focuses on **persuasion detection in long-form text (paragraph-level)** and investigates the **limitations of existing sentence-level models**, particularly in **cross-domain generalization**.
 
 While most prior work treats persuasion detection as a **sentence-level classification task**, this study demonstrates that:
 
