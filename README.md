@@ -240,16 +240,6 @@ project/
 
 ---
 
-##  How to Run
-
-```bash
-git clone <your-repo-link>
-cd project
-
-pip install -r requirements.txt
-
-```
-
 ---
 
 ##  Evaluation Metrics
